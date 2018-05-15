@@ -411,7 +411,7 @@ path.walking-grade {
   z-index: 999;
 }
 
-.first .graphic,.second .graphic {
+.first .graphic,.second .graphic,.first-neg .graphic {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -430,20 +430,20 @@ path.walking-grade {
   width: 1200px;
 }
 
-.first .legend,.second .legend {
+.first .legend,.second .legend,.first-neg .legend {
   font-size: 13px;
 }
 
-.first h1,.second h1 {
+.first h1,.second h1,.first-neg h1 {
   font-size: 15px;
   text-align: center;
 }
 
-.first rect,.second rect {
+.first rect,.second rect,.first-neg rect {
   stroke-width: 2;
 }
 
-.first .label,.second .label {
+.first .label,.second .label,.first-neg .label {
   font-weight: 600;
 }
 

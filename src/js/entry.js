@@ -2,6 +2,7 @@
 import debounce from 'lodash.debounce';
 import isMobile from './utils/is-mobile';
 import graphic from './graphic';
+import graphic1 from './graphic1';
 import graphic2 from './graphic2';
 
 
@@ -13,6 +14,7 @@ function resize() {
 	if (previousWidth !== width) {
 		previousWidth = width;
 		graphic.resize()
+		graphic1.resize()
 		graphic2.resize()
 	}
 }
@@ -24,6 +26,7 @@ function init() {
 	window.addEventListener('resize', debounce(resize, 150));
 	// kick off graphic code
 	graphic.init()
+	graphic1.init()
 	graphic2.init()
 }
 
