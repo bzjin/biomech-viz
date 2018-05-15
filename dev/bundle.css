@@ -394,7 +394,24 @@ path.walking-grade {
   stroke-width: 1px;
 }
 
-.first .graphic {
+.bar-labels {
+  font-size: 8px;
+  font-family: 'Atlas Grotesk Web';
+  fill: #808080;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.donut-labels {
+  font-size: 8px;
+  font-family: 'Atlas Grotesk Web';
+  fill: #808080;
+  font-weight: 700;
+  text-anchor: middle;
+  z-index: 999;
+}
+
+.first .graphic,.second .graphic {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -407,26 +424,26 @@ path.walking-grade {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 360px;
+  height: auto;
   margin: 0 auto;
   position: relative;
   width: 1200px;
 }
 
-.first .legend {
+.first .legend,.second .legend {
   font-size: 13px;
 }
 
-.first h1 {
+.first h1,.second h1 {
   font-size: 15px;
   text-align: center;
 }
 
-.first rect {
+.first rect,.second rect {
   stroke-width: 2;
 }
 
-.first .label {
+.first .label,.second .label {
   font-weight: 600;
 }
 

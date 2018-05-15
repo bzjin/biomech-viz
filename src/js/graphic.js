@@ -12,7 +12,8 @@ function setupChart(){
         title = d.variable_harness.split("_")[0]
         for (var i = 0; i < 3; i++){
             var subdata = [
-                {category: "filler1", value: 90 - d["mean_" + groups[i]] - d["sd_" + groups[i]]},
+                {category: "filler0", value: 85 - d["mean_" + groups[i]] - d["sd_" + groups[i]], mean: d["mean_" + groups[i]], sd: d["sd_" + groups[i]]},
+                {category: "filler1", value: 5, mean: d["mean_" + groups[i]], sd: d["sd_" + groups[i]]},
                 {category: "sd1", value: d["sd_" + groups[i]]},
                 {category: "mean", value: 1},
                 {category: "sd2", value: d["sd_" + groups[i]]},
@@ -27,12 +28,12 @@ function setupChart(){
     var height = 300;
 
     var color_old = d3.scaleOrdinal()
-        .domain([0,1,2,3,4,5])
-        .range(["#f6f6f6", "#cab2d6", "#6a3d9a", "#cab2d6", "#f2e5f2", "none"]);
+        .domain([0,1,2,3,4,5,6])
+        .range(["#f6f6f6","#f6f6f6", "#cab2d6", "#6a3d9a", "#cab2d6", "#f2e5f2", "none"]);
 
     var color_new = d3.scaleOrdinal()
-        .domain([0,1,2,3,4,5])
-        .range(["#f6f6f6", "#fdbf6f", "#ff7f00", "#fdbf6f", "#ffedcc", "none"]);
+        .domain([0,1,2,3,4,5,6])
+        .range(["#f6f6f6","#f6f6f6","#fdbf6f", "#ff7f00", "#fdbf6f", "#ffedcc", "none"]);
 
     let svg = $first.append("svg")
       .attr('width', width + 20)
@@ -109,22 +110,25 @@ function setupChart(){
                 return color_new(d.data.category);
             }
           });
-/*
+
           svg.selectAll('text.arc')
-            .data(dataset)
+            .data(pie(dataset))
             .enter()
             .append("text")
-        	.attr("transform", function(d) {
-            var td = arc.centroid(d);
-            td[0] *= 1.5;	//multiply by a constant factor
-            td[1] *= 1.5;	//multiply by a constant factor
-            return "translate(" + td[0] + "," + td[1] + ")";
-          })
-          .attr("dy", ".50em")
-          .style("text-anchor", "middle")
-          .text(function(d) {
-            if(d.category == "mean") { return d.value}
-        });*/
+               .at("class", "donut-labels")
+        	   .attr("transform", function(d) {
+                    var midAngle = d.endAngle < Math.PI ? d.startAngle/2 + d.endAngle/2 : d.startAngle/2  + d.endAngle/2 + Math.PI ;
+                    var td = arc.centroid(d);
+                    td[0] *= 1;	//multiply by a constant factor
+                    td[1] *= 1;	//multiply by a constant factor
+                    return "translate(" + td[0] + "," + td[1] + ") rotate(" + (midAngle * 180/Math.PI) + ")";
+                  })
+                  .attr("dy", ".50em")
+                  .style("text-anchor", "end")
+                  .html(function(d) {
+                    if (d.data.category == "filler1"){
+                    return d.data.mean + " &plusmn; " + d.data.sd}
+                });
 
           radius += 30
     })

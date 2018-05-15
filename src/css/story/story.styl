@@ -37,13 +37,28 @@ path.walking-grade
   stroke grey
   stroke-width 1px
 
-.first
+.bar-labels
+  font-size 8px
+  font-family $atlas
+  fill grey
+  font-weight 700
+  text-anchor middle
+
+.donut-labels
+  font-size 8px
+  font-family $atlas
+  fill grey
+  font-weight 700
+  text-anchor middle
+  z-index 999
+  
+.first, .second
   .graphic
     display flex
     flex-wrap wrap
     flex-direction row
     justify-content center
-    height 360px
+    height auto
     margin 0 auto
     position relative
     width 1200px

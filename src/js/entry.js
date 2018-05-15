@@ -2,6 +2,7 @@
 import debounce from 'lodash.debounce';
 import isMobile from './utils/is-mobile';
 import graphic from './graphic';
+import graphic2 from './graphic2';
 
 
 const bodySel = d3.select('body');
@@ -12,6 +13,7 @@ function resize() {
 	if (previousWidth !== width) {
 		previousWidth = width;
 		graphic.resize()
+		graphic2.resize()
 	}
 }
 
@@ -22,6 +24,7 @@ function init() {
 	window.addEventListener('resize', debounce(resize, 150));
 	// kick off graphic code
 	graphic.init()
+	graphic2.init()
 }
 
 init();
