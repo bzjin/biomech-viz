@@ -47,7 +47,7 @@ function setupChart(){
         .at("class", "title")
         .at("x", 0)
         .at("y", -270)
-        .text(title)
+        .text(title + " (degrees)")
 
     svg.append("text")
         .at("class", "walking-grade")

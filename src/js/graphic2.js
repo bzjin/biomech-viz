@@ -28,14 +28,20 @@ function setupChart(){
         .at("class", "title")
         .at("x", 0)
         .at("y", 10)
-        .text(title)
+        .text(title + " (" + data[1].metric + ")")
 
     svg.append("text")
         .at("class", "walking-grade")
         .at("x", -150)
         .at("y", 0)
         .at("transform", "rotate(-90)")
-        .text("(" + data[1].metric + ")")
+        .text(function(){
+            if (data[1].label != "") { return data[1].label + " (" + data[1].metric + ")"
+            } else {
+                return data[1].metric
+            }
+        })
+
 
     svg.append("text")
         .at("class", "walking-grade")
@@ -83,8 +89,12 @@ function setupChart(){
             .range([90, 150, 210])
 
         var yScale = d3.scaleLinear()
-            .domain([0, Math.ceil(+d3.max([r.mean_5, r.mean_7, r.mean_10]) + +(r.mean_10/10))])
+            .domain([d.min, d.max])
             .range([210, 0])
+
+        var yHeight= d3.scaleLinear()
+            .domain([0, d.max - d.min])
+            .range([0, 210])
 
         var yAxis = d3.axisLeft(yScale)
 
@@ -96,7 +106,7 @@ function setupChart(){
         for (var i = 0; i < 3; i++){
             svg.append("rect")
                 .at("width", 24)
-                .at("height", 2 * (210-yScale(d["sd_" + groups[i]])))
+                .at("height", 2 * yHeight(d["sd_" + groups[i]]))
                 .at("x", function(){
                     if (old_new == "old") { return xScale(groups[i]) - 25}
                     else return xScale(groups[i]) + 1
