@@ -52,8 +52,14 @@ path.walking-grade
   text-anchor middle
   z-index 999
 
+.degree-labels
+  font-size 8px
+  font-family $atlas
+  fill black
+  z-index 999
+
 .first, .second, .first-neg
-  .graphic
+  .graphic,.graphic1, img
     display flex
     flex-wrap wrap
     flex-direction row
@@ -61,7 +67,11 @@ path.walking-grade
     height auto
     margin 0 auto
     position relative
-    width 1200px
+    width 100%
+    img
+      width 100px
+      height 200px
+      margin 0px 50px
 
   .legend
     font-size 13px

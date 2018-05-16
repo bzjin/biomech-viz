@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce';
 import isMobile from './utils/is-mobile';
 import graphic from './graphic';
 import graphic1 from './graphic1';
+import graphic1a from './graphic1a';
 import graphic2 from './graphic2';
 
 
@@ -15,6 +16,7 @@ function resize() {
 		previousWidth = width;
 		graphic.resize()
 		graphic1.resize()
+		graphic1a.resize()
 		graphic2.resize()
 	}
 }
@@ -27,6 +29,7 @@ function init() {
 	// kick off graphic code
 	graphic.init()
 	graphic1.init()
+	graphic1a.init()
 	graphic2.init()
 }
 

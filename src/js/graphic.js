@@ -24,6 +24,13 @@ function setupChart(){
         }
     })
 
+    var degrees = [
+        {degree: 90, value: 0},
+        {degree: 45, value: 90},
+        {degree: 0, value: 0},
+        {degree: 0, value: 270}
+    ]
+
     var width = 300
     var height = 300;
 
@@ -131,7 +138,35 @@ function setupChart(){
                 });
 
           radius += 30
+
     })
+
+    var arc = d3.arc()
+      .innerRadius(radius-40)
+      .outerRadius(radius);
+
+    var pie = d3.pie()
+      .value(function(d) { return d.value; })
+      .sort(null);
+
+      svg.selectAll('text.degrees')
+        .data(pie(degrees))
+        .enter()
+        .append("text")
+           .at("class", "degree-labels")
+    	   .attr("transform", function(d) {
+                var midAngle = d.endAngle < Math.PI ? d.startAngle/2 + d.endAngle/2 : d.startAngle/2  + d.endAngle/2 + Math.PI ;
+                var td = arc.centroid(d);
+                td[0] *= 1;	//multiply by a constant factor
+                td[1] *= 1;	//multiply by a constant factor
+                return "translate(" + td[0] + "," + (td[1] + 5) + ") rotate(" + (midAngle * 180/Math.PI) + ")";
+              })
+              .attr("dy", ".50em")
+              .style("text-anchor", "end")
+              .html(function(d, i) {
+                  if (i != 3){
+                  return d.data.degree + "&#176;"}
+              });
 
 
 
