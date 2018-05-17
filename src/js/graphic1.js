@@ -17,7 +17,7 @@ function setupChart(){
                     {category: "mean", value: 1},
                     {category: "sd2", value: d["sd_" + groups[i]]},
                     {category: "filler1", value: 5, mean: d["mean_" + groups[i]], sd:d["sd_" + groups[i]]},
-                    {category: "filler2", value: 85 - d["mean_" + groups[i]] - d["sd_" + groups[i]]},
+                    {category: "filler2", value: 85 - d["mean_" + groups[i]] - d["sd_" + groups[i]] - 1},
             	     {category: "whitespace", value: 270},
                 ];
                 formatted.push(subdata)
@@ -170,6 +170,19 @@ function setupChart(){
                       if (i != 3){
                       return d.data.degree + "&#176;"}
                   });
+
+
+          svg.append("path")
+             .at("class", "guide")
+             .at("d", "M0 0 L242 0")
+
+         svg.append("path")
+             .at("class", "guide")
+             .at("d", "M0 0 L0 -242")
+
+         svg.append("path")
+             .at("class", "guide")
+             .at("d", "M0 0 L171 -171")
 
 
 

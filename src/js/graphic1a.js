@@ -26,9 +26,9 @@ function setupChart(){
 
         var degrees = [
             {degree: 0, value: 270},
-            {degree: 90, value: 0},
-            {degree: 45, value: 90},
-            {degree: 0, value: 0}
+            {degree: "90&#176;", value: 0},
+            {degree: "45&#176;", value: 90},
+            {degree: "Posterior 0&#176; Anterior", value: 0}
         ]
 
         var width = 300
@@ -162,15 +162,31 @@ function setupChart(){
                     var td = arc.centroid(d);
                     td[0] *= 1;	//multiply by a constant factor
                     td[1] *= 1;	//multiply by a constant factor
-                    return "translate(" + td[0] + "," + (td[1]) + ") rotate(" + (midAngle * 540/Math.PI) + ")";
+                    if (d.data.degree == "Posterior 0&#176; Anterior") {
+                            return "translate(" + td[0] + "," + (td[1]) + ") rotate(" + (midAngle * 360/Math.PI) + ")"}
+                    else return "translate(" + td[0] + "," + (td[1]) + ") rotate(" + (midAngle * 540/Math.PI) + ")";
                   })
                   .attr("dy", ".50em")
-                  .style("text-anchor", "end")
+                  .style("text-anchor",  function(d){
+                     if (d.data.degree == "Posterior 0&#176; Anterior") { return "middle"}
+                     else return "end"
+                   })
                   .html(function(d, i) {
                       if (i != 0){
-                      return d.data.degree + "&#176;"}
+                      return d.data.degree}
                   });
 
+          svg.append("path")
+             .at("class", "guide")
+             .at("d", "M0 0 L-242 0")
+
+         svg.append("path")
+             .at("class", "guide")
+             .at("d", "M0 0 L0 -242")
+
+         svg.append("path")
+             .at("class", "guide")
+             .at("d", "M0 0 L-171 -171")
 
 
 }

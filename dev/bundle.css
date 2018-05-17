@@ -394,6 +394,15 @@ path.walking-grade {
   stroke-width: 1px;
 }
 
+path.guide {
+  fill: none;
+  stroke: #808080;
+  stroke-width: 1px;
+  stroke-dasharray: 2 2;
+  opacity: 0.3;
+  z-index: 999;
+}
+
 .bar-labels {
   font-size: 8px;
   font-family: 'Atlas Grotesk Web';
@@ -438,8 +447,12 @@ path.walking-grade {
 }
 
 .first .graphic img,.second .graphic img,.first-neg .graphic img,.first .graphic1 img,.second .graphic1 img,.first-neg .graphic1 img,.first img img,.second img img,.first-neg img img {
-  width: 100px;
-  height: 200px;
+  width: 150px;
+  height: 300px;
+  margin: 0px 50px;
+}
+
+.first .graphic svg,.second .graphic svg,.first-neg .graphic svg,.first .graphic1 svg,.second .graphic1 svg,.first-neg .graphic1 svg,.first img svg,.second img svg,.first-neg img svg {
   margin: 0px 50px;
 }
 
