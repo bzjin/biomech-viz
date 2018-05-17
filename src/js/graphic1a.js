@@ -13,7 +13,7 @@ function setupChart(){
             for (var i = 0; i < 3; i++){
                 var subdata = [
                     {category: "whitespace", value: 270},
-                    {category: "filler1", value: 85 - d["mean_" + groups[i]] - d["sd_" + groups[i]] },
+                    {category: "filler1", value: 85 - d["mean_" + groups[i]] - d["sd_" + groups[i]] -1 },
                     {category: "filler2", value: 5, mean: d["mean_" + groups[i]], sd: d["sd_" + groups[i]]},
                     {category: "sd1", value: d["sd_" + groups[i]]},
                     {category: "mean", value: 1},
